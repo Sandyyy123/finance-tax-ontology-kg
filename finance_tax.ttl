@@ -1,0 +1,68 @@
+@prefix ft: <https://example.org/fin-tax#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ft:LegalEntity a owl:Class ;
+    rdfs:label "LegalEntity" ;
+    rdfs:comment "An incorporated organisation." ;
+    rdfs:subClassOf ft:FinancialEntity .
+
+ft:NaturalPerson a owl:Class ;
+    rdfs:label "NaturalPerson" ;
+    rdfs:comment "An individual taxpayer." ;
+    rdfs:subClassOf ft:FinancialEntity .
+
+ft:Ontology a owl:Ontology .
+
+ft:VAT_Reduced_DE a ft:VATCategory ;
+    ft:ratePercent 7.0 .
+
+ft:VAT_Standard_DE a ft:VATCategory ;
+    ft:ratePercent 19.0 .
+
+ft:amount a owl:DatatypeProperty ;
+    rdfs:domain ft:Transaction ;
+    rdfs:range xsd:decimal .
+
+ft:governedBy a owl:ObjectProperty ;
+    rdfs:domain ft:TaxClassification ;
+    rdfs:range ft:RegulatoryConcept .
+
+ft:hasTaxClassification a owl:ObjectProperty ;
+    rdfs:domain ft:Transaction ;
+    rdfs:range ft:TaxClassification .
+
+ft:incursObligation a owl:ObjectProperty ;
+    rdfs:domain ft:Transaction ;
+    rdfs:range ft:TaxObligation .
+
+ft:ratePercent a owl:DatatypeProperty ;
+    rdfs:domain ft:VATCategory ;
+    rdfs:range xsd:decimal .
+
+ft:RegulatoryConcept a owl:Class ;
+    rdfs:label "RegulatoryConcept" ;
+    rdfs:comment "A concept defined by a regulation (e.g. IFRS, MiFID II)." .
+
+ft:TaxObligation a owl:Class ;
+    rdfs:label "TaxObligation" ;
+    rdfs:comment "A duty to remit tax arising from a transaction." .
+
+ft:FinancialEntity a owl:Class ;
+    rdfs:label "FinancialEntity" ;
+    rdfs:comment "Any legal or natural entity with financial obligations." .
+
+ft:TaxClassification a owl:Class ;
+    rdfs:label "TaxClassification" ;
+    rdfs:comment "A category under a tax code." .
+
+ft:Transaction a owl:Class ;
+    rdfs:label "Transaction" ;
+    rdfs:comment "A financial event with tax consequences." .
+
+ft:VATCategory a owl:Class ;
+    rdfs:label "VATCategory" ;
+    rdfs:comment "Value-added-tax rate class (standard/reduced/exempt)." ;
+    rdfs:subClassOf ft:TaxClassification .
+

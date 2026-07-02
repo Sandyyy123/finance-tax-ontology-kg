@@ -1,0 +1,17 @@
+@prefix ft: <https://example.org/fin-tax#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ft:TransactionShape a sh:NodeShape ;
+    sh:property ft:_amountProp,
+        ft:_classProp ;
+    sh:targetClass ft:Transaction .
+
+ft:_amountProp sh:datatype xsd:decimal ;
+    sh:minCount 1 ;
+    sh:path ft:amount .
+
+ft:_classProp sh:message "Every transaction must carry a tax classification." ;
+    sh:minCount 1 ;
+    sh:path ft:hasTaxClassification .
+

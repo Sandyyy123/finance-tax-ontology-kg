@@ -1,0 +1,5 @@
+rdflib>=7.0
+networkx>=3.0
+spacy>=3.7  ; python_version < "3.13"
+# optional: python -m spacy download en_core_web_sm
+# optional graph store: neo4j>=5.0 , pyshacl>=0.25 (SHACL validation engine)
